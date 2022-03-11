@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
+
+html {
+  background: linear-gradient(45deg, #BDFFFD, #9FFFF5, #7CFFC4, #6ABEA7, #1F363D);
+  font-family: 'Viga', sans-serif;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+#start-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+}
+
+#container-text{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#container-text h1{
+  font-size: 1.8rem;
+  color: rgb(48, 47, 47);
+  margin-bottom: 100px;
+  margin-right: 50px;
+  max-width: 590px;
+  text-align: center;
+}
+
+#container-text h1 span{
+  color: rgb(61, 165, 255);
+}
+
+#container img{
+  background-color: #9FFFF5;
+  padding: 15px;
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+}
+
+#container a{
+  text-decoration: none;
+}
+
+#container a button{
+  padding: 15px;
+  width: 150px;
+  font-size: 1.2rem;
+  font-family: 'Viga', sans-serif;
+  background-color: #1F363D;
+  box-shadow: 2px 5px 6px 0px black;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  transition: all ease .3s;
+}
+
+#container a button:hover{
+  font-family: 'Viga', sans-serif;
+  cursor: pointer;
+  color: #1F363D;
+  background-color: white;
+  transform: scale(1.2);
+}
