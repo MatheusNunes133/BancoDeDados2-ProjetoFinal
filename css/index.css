@@ -82,3 +82,18 @@ html, body {
   background-color: white;
   transform: scale(1.2);
 }
+
+@media screen and (max-width:660px){
+  #container{
+    flex-direction: column-reverse;
+  }
+
+  #container img{
+    height: 150px;
+    width: 150px;
+  }
+
+  #container-text h1{
+    margin: 20px 0;
+  }
+}
