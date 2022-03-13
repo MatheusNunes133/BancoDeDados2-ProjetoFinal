@@ -13,6 +13,7 @@ app.set('view engine', 'html')
 app.use(express.static(__dirname + '/css'));
 app.use(express.static(__dirname + '/assets/images'))
 app.use(express.static(__dirname + '/html'))
+app.use(express.static(__dirname + '/js'))
 
 //Setando configurações do cors
 app.use(function(req, res, next){
@@ -21,14 +22,19 @@ app.use(function(req, res, next){
     next()
 });
 
-//Setando portas
+//Setando portas para renderizar landing pages
 app.get('/',(req, res)=>{
   return res.sendFile('index.html', {root: __dirname})
 })
-
 app.get('/registro-de-pessoas',(req, res)=>{
   return res.sendFile('html/registro-de-pessoas.html',{root: __dirname})
 })
+
+//Importando arquivo responsavel pela manipulação do mongodb
+const mongo = require('./database/mongodb/mongo')
+
+//Setando portas para fazer operações nos bancos
+app.post('/saveNewUser',mongo.saveUser)
 
 //Iniciando o server na porta 3000
 app.listen(port,()=>{
