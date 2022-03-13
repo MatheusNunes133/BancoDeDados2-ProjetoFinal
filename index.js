@@ -26,6 +26,11 @@ app.use(function(req, res, next){
 app.get('/',(req, res)=>{
   return res.sendFile('index.html', {root: __dirname})
 })
+
+app.get('/selecione-uma-opcao', (req, res)=>{
+  return res.sendFile('html/pagina-de-opcoes.html', {root: __dirname})
+})
+
 app.get('/registro-de-pessoas',(req, res)=>{
   return res.sendFile('html/registro-de-pessoas.html',{root: __dirname})
 })
