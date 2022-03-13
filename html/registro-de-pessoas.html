@@ -15,23 +15,25 @@
       <h1>Registro de usuários</h1>
       <div class="campos">
         <label for="user-name">Nome: </label>
-        <input type="text" placeholder="Informe o nome..." name="user-name">
+        <input type="text" placeholder="Informe o nome..." name="user-name" required id="userName">
       </div>
       <div class="campos">
         <label for="user-email">Email: </label>
-        <input type="email" placeholder="Informe o email..." name="user-email">
+        <input type="text" placeholder="Informe o email..." name="user-email" required id="userEmail">
       </div>
       <div class="campos">
-        <label for="user-CPF">CPF: </label>
-        <input type="text" placeholder="Informe o CPF..." name="user-CPF">
+        <label for="user-idade">Idade: </label>
+        <input type="number" placeholder="Informe a idade..." name="user-idade" required id="userIdade">
       </div>
       <div class="campos">
         <label for="user-city">Cidade: </label>
-        <input type="text" placeholder="Informe a cidade..." name="user-city">
+        <input type="text" placeholder="Informe a cidade..." name="user-city" required id="userCidade">
       </div>
-      <button>Salvar Usuário</button>
     </form>
+    <button onclick="saveUser()">Salvar Usuário</button>
   </section>
+
+  <script src="save-pessoa.js"></script>
 </body>
 
 </html>
