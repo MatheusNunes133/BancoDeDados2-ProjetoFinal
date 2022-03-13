@@ -40,6 +40,7 @@ const mongo = require('./database/mongodb/mongo')
 
 //Setando portas para fazer operações nos bancos
 app.post('/saveNewUser',mongo.saveUser)
+app.get('/getUsers', mongo.getUsers)
 
 //Iniciando o server na porta 3000
 app.listen(port,()=>{
