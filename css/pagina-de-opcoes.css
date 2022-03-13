@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+@import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
+
+html {
+    background: linear-gradient(45deg, #BDFFFD, #9FFFF5, #7CFFC4, #6ABEA7, #1F363D);
+    font-family: 'Viga', sans-serif;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+}
+
+body{
+    padding: 15vh 10vw 8vh 10vw;
+}
+
+section{
+    padding-top: 50px;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0px 0px 13px 0px black;
+}
+
+section h1{
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+#options{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-bottom: 50px;
+}
+
+#options a button{
+    padding: 20px;
+    width: 100%;
+    font-family: 'Viga', sans-serif;
+    font-size: 1.0rem;
+    border: none;
+    border-radius: 25px;
+    background-color: #1F363D;
+    color: white;
+    transition: all ease .3s;
+}
+
+#options a button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    background-color: #6ABEA7;
+    color: black;
+}
+
+@media screen and (max-width:550px){
+    #options{
+        flex-direction: column;
+    }
+    #options a{
+        margin-bottom: 50px;
+    }
+}
