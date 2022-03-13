@@ -12,6 +12,7 @@ app.use(express.json())
 app.set('view engine', 'html')
 app.use(express.static(__dirname + '/css'));
 app.use(express.static(__dirname + '/assets/images'))
+app.use(express.static(__dirname + '/assets/icons'))
 app.use(express.static(__dirname + '/html'))
 app.use(express.static(__dirname + '/js'))
 
@@ -33,6 +34,10 @@ app.get('/selecione-uma-opcao', (req, res)=>{
 
 app.get('/registro-de-pessoas',(req, res)=>{
   return res.sendFile('html/registro-de-pessoas.html',{root: __dirname})
+})
+
+app.get('/mostra-usuarios-salvos',(req, res)=>{
+  return res.sendFile('html/mostra-usuarios-salvos.html',{root: __dirname})
 })
 
 //Importando arquivo responsavel pela manipulação do mongodb
