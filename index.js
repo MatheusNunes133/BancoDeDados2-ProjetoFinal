@@ -12,6 +12,7 @@ app.use(express.json())
 app.set('view engine', 'html')
 app.use(express.static(__dirname + '/css'));
 app.use(express.static(__dirname + '/assets/images'))
+app.use(express.static(__dirname + '/html'))
 
 //Setando configurações do cors
 app.use(function(req, res, next){
@@ -23,6 +24,10 @@ app.use(function(req, res, next){
 //Setando portas
 app.get('/',(req, res)=>{
   return res.sendFile('index.html', {root: __dirname})
+})
+
+app.get('/registro-de-pessoas',(req, res)=>{
+  return res.sendFile('html/registro-de-pessoas.html',{root: __dirname})
 })
 
 //Iniciando o server na porta 3000
