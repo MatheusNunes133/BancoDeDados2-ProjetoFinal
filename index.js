@@ -48,8 +48,8 @@ app.get('/getUsersMongo', mongo.getUsers)
 
 //Importando arquivo responsável pela manipulação do postresSQL
 const postgres = require('./database/postgres/postgres')
-app.get('/saveNewUserPostgres', postgres.getSVG)
-app.get('/getViewBoxPostgres', postgres.getViewBox)
+app.post('/getSvgPostgres', postgres.getSVG)
+app.post('/getViewBoxPostgres', postgres.getViewBox)
 
 //Iniciando o server na porta 3000
 app.listen(port,()=>{
