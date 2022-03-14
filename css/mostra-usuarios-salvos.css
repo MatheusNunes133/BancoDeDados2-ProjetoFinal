@@ -74,10 +74,18 @@ section h1{
 }
 
 .content--activate{
-    max-height: 100px;
+    max-height: 200px;
 }
 
-/* .images-crud{
-    height: 50px;
-    width: 50px;
-} */
+#container-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.images-crud{
+    height: 40px;
+    width: 40px;
+}
