@@ -12,6 +12,7 @@ app.use(express.json())
 app.set('view engine', 'html')
 app.use(express.static(__dirname + '/css'));
 app.use(express.static(__dirname + '/assets/images'))
+app.use(express.static(__dirname + '/assets/icons'))
 app.use(express.static(__dirname + '/html'))
 app.use(express.static(__dirname + '/js'))
 
@@ -35,11 +36,16 @@ app.get('/registro-de-pessoas',(req, res)=>{
   return res.sendFile('html/registro-de-pessoas.html',{root: __dirname})
 })
 
+app.get('/mostra-usuarios-salvos',(req, res)=>{
+  return res.sendFile('html/mostra-usuarios-salvos.html',{root: __dirname})
+})
+
 //Importando arquivo responsavel pela manipulação do mongodb
 const mongo = require('./database/mongodb/mongo')
 
 //Setando portas para fazer operações nos bancos
 app.post('/saveNewUser',mongo.saveUser)
+app.get('/getUsers', mongo.getUsers)
 
 //Iniciando o server na porta 3000
 app.listen(port,()=>{

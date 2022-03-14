@@ -35,6 +35,20 @@ async function saveUser(req, res){
      }
 }
 
+//Função responsável por retornar um array com todos os usuários salvos no banco
+async function getUsers(req, res){
+    try {
+        await client.connect()
+        const mongodb = client.db(`${process.env.MONGO_DATABASE}`).collection(`${process.env.MONGO_COLLECTION}`)
+        let results = []
+        await mongodb.find().forEach(item=>{results.push(item)})
+
+        return res.status(200).send(results)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 //Função que faz a verificação de usuários existenstes
 async function returnUsers(email){
     try {
@@ -54,5 +68,6 @@ async function returnUsers(email){
 }
 
 module.exports = {
-    saveUser
+    saveUser,
+    getUsers
 }
