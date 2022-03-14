@@ -14,7 +14,7 @@ function saveUser(){
     let nullValues = findNullValues(objInfo)
     
     if(nullValues == 0){
-        fetch("http://localhost:3000/saveNewUser",{
+        fetch("http://localhost:3000/saveNewUserMongo",{
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

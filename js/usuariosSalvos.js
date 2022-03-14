@@ -23,7 +23,7 @@ async function showUsers(){
 
 //Função responsável por retornar usuários do banco
 async function returnUsers(){
-    let arrayResults = fetch("http://localhost:3000/getUsers")
+    let arrayResults = fetch("http://localhost:3000/getUsersMongo")
                         .then(result=>{return result.json()})
 
     let results = []
