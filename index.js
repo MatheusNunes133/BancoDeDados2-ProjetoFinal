@@ -43,9 +43,13 @@ app.get('/mostra-usuarios-salvos',(req, res)=>{
 //Importando arquivo responsavel pela manipulação do mongodb
 const mongo = require('./database/mongodb/mongo')
 
-//Setando portas para fazer operações nos bancos
-app.post('/saveNewUser',mongo.saveUser)
-app.get('/getUsers', mongo.getUsers)
+app.post('/saveNewUserMongo',mongo.saveUser)
+app.get('/getUsersMongo', mongo.getUsers)
+
+//Importando arquivo responsável pela manipulação do postresSQL
+const postgres = require('./database/postgres/postgres')
+app.get('/saveNewUserPostgres', postgres.getSVG)
+app.get('/getViewBoxPostgres', postgres.getViewBox)
 
 //Iniciando o server na porta 3000
 app.listen(port,()=>{
