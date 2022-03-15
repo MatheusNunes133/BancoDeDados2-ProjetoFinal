@@ -8,8 +8,10 @@ async function showUsers(){
     
     let arrayResults = await returnUsers()
     
-    arrayResults.forEach(item=>{
+    arrayResults.forEach((item, index)=>{
         createElements(item)
+        createSVG(item, index)
+        createViewBox(item, index)
     })
 
     let button = document.querySelectorAll('#buttons')
@@ -58,6 +60,16 @@ function createElements(item){
         idade.innerHTML = `Idade: ${item.idade}`
     let cidade = document.createElement('p')
         cidade.innerHTML = `Cidade: ${item.cidade}`
+    //Adiciona svg para desenhar a cidade dos usuarios
+    let svgns = 'http://www.w3.org/2000/svg'
+    let svg = document.createElementNS(svgns, 'svg')
+        svg.setAttribute('height', 200)
+        svg.setAttribute('width', '100%')
+    
+    let path = document.createElementNS(svgns, 'path')
+
+        svg.appendChild(path)
+    
     //Div de operações crud
     let divButtons = document.createElement('div')
         divButtons.id = 'container-buttons'
@@ -85,10 +97,58 @@ function createElements(item){
         divText.appendChild(email)
         divText.appendChild(idade)
         divText.appendChild(cidade)
-
+        divText.appendChild(svg)
         divText.appendChild(divButtons)
 
         div.appendChild(button)
         div.appendChild(divText)
     divContainer.appendChild(div)
+}
+
+//Função responsável por retornar o svg da cidade do usuário
+async function createSVG(item, index){
+
+    fetch("http://localhost:3000/getSvgPostgres",{
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Headers': '*'
+        },
+        body: JSON.stringify(item)
+    }).then(result =>{
+        return result.json()
+    }).then(resp=>{
+        desenhaSVG(resp[0].st_assvg, index)
+    })
+
+}
+
+//Função responsável por retornar o viewBox da cidade do usuário
+async function createViewBox(item, index){
+    fetch("http://localhost:3000/getViewBoxPostgres",{
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Headers': '*'
+        },
+        body: JSON.stringify(item)
+    }).then(result =>{
+        return result.json()
+    }).then(resp=>{
+        desenhaViewBox(resp[0].getviewbox, index)
+    })
+}
+
+//Função responsável por adicionar o viewBox ao svg
+function desenhaViewBox(stringViewBox, index){
+    let svg = document.querySelectorAll('svg')
+        svg[index].setAttribute('viewBox', stringViewBox)
+}
+
+//Função responsável por adicionar o path ao svg
+function desenhaSVG(stringSvg, index){
+    let path = document.querySelectorAll('path')
+        path[index].setAttribute('d', stringSvg)
 }
