@@ -74,6 +74,28 @@ async function updateUser(req, res){
     }
 }
 
+//Função responsável por deletar um usuário resgistrado no mongbd
+async function deleteUser(req, res){
+    const { email } = req.body
+
+    try {
+        await client.connect()
+        const mongodb = client.db(`${process.env.MONGO_DATABASE}`).collection(`${process.env.MONGO_COLLECTION}`)
+        let countUsers = await returnUsers(email)
+
+        if(countUsers == 1){
+            mongodb.deleteOne({
+                email,
+            })
+            return res.status(200).send()
+        }else{
+            return res.status(400).send()
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 //Função que faz a verificação de usuários existenstes
 async function returnUsers(email){
     try {
@@ -95,5 +117,6 @@ async function returnUsers(email){
 module.exports = {
     saveUser,
     getUsers,
-    updateUser
+    updateUser, 
+    deleteUser
 }
