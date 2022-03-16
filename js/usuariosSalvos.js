@@ -78,7 +78,11 @@ function createElements(item){
         link_edit.href = '/edit-user'
 
     let link_delete = document.createElement('a')
-        link_delete.href = '/delete-user'
+        link_delete.addEventListener('click', ()=>{
+            if(confirm(`Realmente deseja excluir esta pessoa?\nNome: ${item.name}`)){
+                deleteUser(item)
+            }
+        })
     //Imagens de editar e exluir
     let edit_img = document.createElement('img')
         edit_img.src = 'edit_icon.svg'
@@ -151,4 +155,20 @@ function desenhaViewBox(stringViewBox, index){
 function desenhaSVG(stringSvg, index){
     let path = document.querySelectorAll('path')
         path[index].setAttribute('d', stringSvg)
+}
+
+//Função responsável por deletar um usuário do mongoDB
+function deleteUser(item){
+    fetch("http://localhost:3000/deleteUserMongo",{
+        method: 'POST',
+        headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Headers': '*'
+        },
+        body: JSON.stringify(item)
+    }).then(resp=>{
+        alert('Usuário deletado com sucesso')
+        location.reload()
+    })
 }
