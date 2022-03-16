@@ -50,6 +50,7 @@ const mongo = require('./database/mongodb/mongo')
 app.post('/saveNewUserMongo',mongo.saveUser)
 app.get('/getUsersMongo', mongo.getUsers)
 app.post('/updateUserMongo', mongo.updateUser)
+app.post('/deleteUserMongo', mongo.deleteUser)
 
 //Importando arquivo responsável pela manipulação do postresSQL
 const postgres = require('./database/postgres/postgres')
