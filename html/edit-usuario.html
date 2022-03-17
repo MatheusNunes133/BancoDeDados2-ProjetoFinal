@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="edit-usuario.css">
+    <title>Editar Pessoa</title>
+</head>
+<body>
+    <section>
+        <form action="">
+          <h1>Editar Pessoa</h1>
+          <div class="campos">
+            <label for="user-name">Nome: </label>
+            <input type="text" placeholder="Informe o nome..." name="user-name" required id="userName">
+          </div>
+          <div class="campos">
+            <label for="user-oldEmail">Antigo email: </label>
+            <input type="text" placeholder="Informe o email antigo..." name="user-oldEmail" required id="userOldEmail">
+          </div>
+          <div class="campos">
+            <label for="user-newEmail">Novo email: </label>
+            <input type="text" placeholder="Informe o novo email..." name="user-newEmail" required id="userNewEmail">
+          </div>
+          <div class="campos">
+            <label for="user-idade">Idade: </label>
+            <input type="number" placeholder="Informe a idade..." name="user-idade" required id="userIdade">
+          </div>
+          <div class="campos">
+            <label for="user-city">Cidade: </label>
+            <input type="text" placeholder="Informe a cidade..." name="user-city" required id="userCidade">
+          </div>
+        </form>
+        <button onclick="editUser()">Salvar Edição</button>
+      </section>
+
+      <script src="editar-pessoa.js"></script>
+</body>
+</html>

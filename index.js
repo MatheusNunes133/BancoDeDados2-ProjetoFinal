@@ -40,11 +40,17 @@ app.get('/mostra-usuarios-salvos',(req, res)=>{
   return res.sendFile('html/mostra-usuarios-salvos.html',{root: __dirname})
 })
 
+app.get('/edit-user',(req, res)=>{
+  return res.sendFile('html/edit-usuario.html', {root: __dirname})
+})
+
 //Importando arquivo responsavel pela manipulação do mongodb
 const mongo = require('./database/mongodb/mongo')
 
 app.post('/saveNewUserMongo',mongo.saveUser)
 app.get('/getUsersMongo', mongo.getUsers)
+app.post('/updateUserMongo', mongo.updateUser)
+app.post('/deleteUserMongo', mongo.deleteUser)
 
 //Importando arquivo responsável pela manipulação do postresSQL
 const postgres = require('./database/postgres/postgres')

@@ -85,6 +85,36 @@ section h1{
     width: 100%;
 }
 
+#container-buttons a{
+    cursor: pointer;
+}
+
+#container a {
+    width: 80%;
+}
+
+#container a button{
+    margin: auto;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    width: 100%;
+    font-family: 'Viga', sans-serif;
+    font-size: 1.0rem;
+    background-color: #1F363D;
+    border: none;
+    border-radius: 25px;
+    color: White;
+    transition: all ease .3s;
+}
+
+
+#container a button:hover{
+    cursor: pointer;
+    background-color: #6ABEA7;
+    color: black;
+    transform: scale(1.1);
+}
+
 .images-crud{
     height: 40px;
     width: 40px;
