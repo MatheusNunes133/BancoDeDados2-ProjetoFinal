@@ -60,6 +60,8 @@ function createElements(item){
         idade.innerHTML = `Idade: ${item.idade}`
     let cidade = document.createElement('p')
         cidade.innerHTML = `Cidade: ${item.cidade}`
+    let relacao = document.createElement('p')
+        relacao.innerHTML = `Relação: ${item.relacao}`
     //Adiciona svg para desenhar a cidade dos usuarios
     let svgns = 'http://www.w3.org/2000/svg'
     let svg = document.createElementNS(svgns, 'svg')
@@ -101,6 +103,7 @@ function createElements(item){
         divText.appendChild(email)
         divText.appendChild(idade)
         divText.appendChild(cidade)
+        divText.appendChild(relacao)
         divText.appendChild(svg)
         divText.appendChild(divButtons)
 
