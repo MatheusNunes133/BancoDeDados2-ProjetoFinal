@@ -117,9 +117,23 @@ async function returnUsers(email){
     }
 }
 
+//Função que altera relacionamento salvo no mongo
+async function setNameRelationship(email, relation){
+    try {
+        await client.connect()
+        const mongodb = client.db(`${process.env.MONGO_DATABASE}`).collection(`${process.env.MONGO_COLLECTION}`)
+        let query = {email: email}
+        let set = {$set: {relacao: relation}}
+        mongodb.updateOne(query, set)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 module.exports = {
     saveUser,
     getUsers,
     updateUser, 
-    deleteUser
+    deleteUser,
+    setNameRelationship
 }
