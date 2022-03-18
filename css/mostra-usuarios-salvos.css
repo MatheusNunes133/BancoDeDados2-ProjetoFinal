@@ -74,7 +74,7 @@ section h1{
 }
 
 .content--activate{
-    max-height: 350px;
+    max-height: 400px;
 }
 
 #container-buttons{
@@ -89,7 +89,7 @@ section h1{
     cursor: pointer;
 }
 
-#container a {
+#container #paginaRegistro {
     width: 80%;
 }
 
