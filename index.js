@@ -57,6 +57,11 @@ const postgres = require('./database/postgres/postgres')
 app.post('/getSvgPostgres', postgres.getSVG)
 app.post('/getViewBoxPostgres', postgres.getViewBox)
 
+//Importando arquivo responsável pela manipulação do neo4j
+const neo4j = require('./database/neo4j/neo4j')
+
+app.post('/save-relationship-neo4j', neo4j.createRelationship)
+
 //Iniciando o server na porta 3000
 app.listen(port,()=>{
   console.log(`Server online na porta ${port}`)
