@@ -9,6 +9,8 @@ const client = new MongoClient(`mongodb://${process.env.MONGO_HOST}:${process.en
     useUnifiedTopology: true
 })
 
+const neo4j = require('../neo4j/neo4j')
+
 //Função que salva um novo usuário no mongodb
 async function saveUser(req, res){
     const {name, email, idade, cidade} = req.body
@@ -19,14 +21,15 @@ async function saveUser(req, res){
     
          //Se não existir usuários com o email informado, permitir cadastro
          if(countUsers == 0 && name != '' && email != ''){
-             const mongodb = client.db(`${process.env.MONGO_DATABASE}`).collection(`${process.env.MONGO_COLLECTION}`)
-                 await mongodb.insertOne({
-                    name,
-                    email,
-                    idade,
-                    cidade
-                })
-             res.status(200).send()
+            const mongodb = client.db(`${process.env.MONGO_DATABASE}`).collection(`${process.env.MONGO_COLLECTION}`)
+            await mongodb.insertOne({
+                name,
+                email,
+                idade,
+                cidade
+            })
+            await neo4j.addToNeo4j(name, email)
+            res.status(200).send()
          }else{
              res.status(400).send('Email já registrado ou existem campos em branco!')
          }
