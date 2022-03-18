@@ -40,8 +40,10 @@ async function createRelationship(req, res){
                     create (p1)-[r:${relationshipType}]->(p2)`
         await session.run(query)
 
-        let relation = `${relationshipType} -> ${firstEmail}`
-        await mongo.setRelationshipMongo(secondEmail, relation)
+        let relation1 = `${relationshipType} -> ${firstEmail}`
+        let relation2 = `${relationshipType} -> ${secondEmail}`
+        await mongo.setRelationshipMongo(secondEmail, relation1)
+        await mongo.setRelationshipMongo(firstEmail, relation2)
         return res.status(200).send()
     } catch (error) {
         console.log(error)
