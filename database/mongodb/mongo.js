@@ -90,6 +90,7 @@ async function deleteUser(req, res){
             mongodb.deleteOne({
                 email,
             })
+            await neo4j.removeToNeo4j(email)
             return res.status(200).send()
         }else{
             return res.status(400).send()
