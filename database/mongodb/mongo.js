@@ -91,6 +91,14 @@ async function deleteUser(req, res){
                 email,
             })
             await neo4j.removeToNeo4j(email)
+            let arrayResult = await returnAllUsers()
+                arrayResult.forEach(item=>{
+                    if(item.relacao.includes(email)){
+                        let query = {email: item.email}
+                        let update = {$set: {name:item.name, email: item.email, idade: item.idade, cidade: item.cidade, relacao: ''}}
+                        mongodb.updateMany(query, update)
+                    }
+                })
             return res.status(200).send()
         }else{
             return res.status(400).send()
@@ -126,6 +134,21 @@ async function setRelationshipMongo(email, relation){
         let query = {email: email}
         let set = {$set: {relacao: relation}}
         mongodb.updateOne(query, set)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+//Função que retorna todos os usuários no mongo
+async function returnAllUsers(){
+    try {
+        await client.connect()
+        const mongodb = client.db(`${process.env.MONGO_DATABASE}`).collection(`${process.env.MONGO_COLLECTION}`)
+        let results = []
+        await mongodb.find().forEach(item=>{results.push(item)})
+            
+        return results
+
     } catch (error) {
         console.log(error)
     }
