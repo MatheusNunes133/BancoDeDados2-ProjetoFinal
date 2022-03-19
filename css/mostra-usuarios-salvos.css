@@ -89,7 +89,7 @@ section h1{
     cursor: pointer;
 }
 
-#container #paginaRegistro {
+#container .paginaRegistro {
     width: 80%;
 }
 
