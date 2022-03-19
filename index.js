@@ -44,6 +44,10 @@ app.get('/edit-user',(req, res)=>{
   return res.sendFile('html/edit-usuario.html', {root: __dirname})
 })
 
+app.get('/criar-relacionamento', (req, res)=>{
+  return res.sendFile('html/criar-relacionamento.html', {root: __dirname})
+})
+
 //Importando arquivo responsavel pela manipulação do mongodb
 const mongo = require('./database/mongodb/mongo')
 
