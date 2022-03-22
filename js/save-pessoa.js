@@ -4,11 +4,13 @@ function saveUser(){
     let userIdade = Number(document.querySelector('#userIdade').value)
     let userCidade = document.querySelector('#userCidade').value
 
+    let cidade = cityName(userCidade)
+
     let objInfo = {
         name: userName,
         email: userEmail,
         idade: userIdade,
-        cidade: userCidade
+        cidade,
     }
 
     let nullValues = findNullValues(objInfo)
@@ -54,4 +56,19 @@ function resetCamps(){
     userEmail.value = ''
     userIdade.value = ''
     userCidade.value = ''
+}
+
+//Função que Ajusta o nome da cidade
+function cityName(text) {
+    let loweredText = text.toLowerCase();
+    let words = loweredText.split(" ");
+    for (let i = 0; i < words.length; i++) {
+        let letter = words[i];
+
+        let firstLetter = letter[0];
+        letter = firstLetter.toUpperCase() + letter.slice(1);
+
+        words[i] = letter;
+    }
+    return words.join(" ");
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="criar-relacionamento.css">
+    <title>Criar Relacionamento</title>
+</head>
+<body>
+    <section>
+        <form action="">
+          <h1>Criar um novo Relacionamento</h1>
+          <div class="campos">
+            <label for="user-email1">Primeiro Email </label>
+            <input type="text" placeholder="Informe o primeiro email..." name="user-email" required id="firstEmail">
+          </div>
+          <div class="campos">
+            <label for="user-email2">Segundo Email: </label>
+            <input type="text" placeholder="Informe o segundo email..." name="user-email" required id="secondEmail">
+          </div>
+          <div class="campos">
+            <label for="user-relationship">Tipo de relacionamento: </label>
+            <input type="text" placeholder="Informe o tipo de relacionamento..." name="user-relationship" required id="relationship">
+          </div>
+        </form>
+        <button onclick="createRelation()">Salvar Relacionamento</button>
+        <button onclick="window.location.href='/mostra-usuarios-salvos'">Listar Usuários</button>
+      </section>
+
+      <script src="criar-relacionamento.js"></script>
+</body>
+</html>

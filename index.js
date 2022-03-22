@@ -44,6 +44,10 @@ app.get('/edit-user',(req, res)=>{
   return res.sendFile('html/edit-usuario.html', {root: __dirname})
 })
 
+app.get('/criar-relacionamento', (req, res)=>{
+  return res.sendFile('html/criar-relacionamento.html', {root: __dirname})
+})
+
 //Importando arquivo responsavel pela manipulação do mongodb
 const mongo = require('./database/mongodb/mongo')
 
@@ -56,6 +60,11 @@ app.post('/deleteUserMongo', mongo.deleteUser)
 const postgres = require('./database/postgres/postgres')
 app.post('/getSvgPostgres', postgres.getSVG)
 app.post('/getViewBoxPostgres', postgres.getViewBox)
+
+//Importando arquivo responsável pela manipulação do neo4j
+const neo4j = require('./database/neo4j/neo4j')
+
+app.post('/save-relationship-neo4j', neo4j.createRelationship)
 
 //Iniciando o server na porta 3000
 app.listen(port,()=>{

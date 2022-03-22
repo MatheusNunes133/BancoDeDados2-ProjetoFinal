@@ -9,6 +9,8 @@ const client = new MongoClient(`mongodb://${process.env.MONGO_HOST}:${process.en
     useUnifiedTopology: true
 })
 
+const neo4j = require('../neo4j/neo4j')
+
 //Função que salva um novo usuário no mongodb
 async function saveUser(req, res){
     const {name, email, idade, cidade} = req.body
@@ -19,14 +21,15 @@ async function saveUser(req, res){
     
          //Se não existir usuários com o email informado, permitir cadastro
          if(countUsers == 0 && name != '' && email != ''){
-             const mongodb = client.db(`${process.env.MONGO_DATABASE}`).collection(`${process.env.MONGO_COLLECTION}`)
-                 await mongodb.insertOne({
-                    name,
-                    email,
-                    idade,
-                    cidade
-                })
-             res.status(200).send()
+            const mongodb = client.db(`${process.env.MONGO_DATABASE}`).collection(`${process.env.MONGO_COLLECTION}`)
+            await mongodb.insertOne({
+                name,
+                email,
+                idade,
+                cidade
+            })
+            await neo4j.addToNeo4j(name, email)
+            res.status(200).send()
          }else{
              res.status(400).send('Email já registrado ou existem campos em branco!')
          }
@@ -87,6 +90,15 @@ async function deleteUser(req, res){
             mongodb.deleteOne({
                 email,
             })
+            await neo4j.removeToNeo4j(email)
+            let arrayResult = await returnAllUsers()
+                arrayResult.forEach(item=>{
+                    if(item.relacao.includes(email)){
+                        let query = {email: item.email}
+                        let update = {$set: {name:item.name, email: item.email, idade: item.idade, cidade: item.cidade, relacao: ''}}
+                        mongodb.updateMany(query, update)
+                    }
+                })
             return res.status(200).send()
         }else{
             return res.status(400).send()
@@ -114,9 +126,38 @@ async function returnUsers(email){
     }
 }
 
+//Função que altera relacionamento salvo no mongo
+async function setRelationshipMongo(email, relation){
+    try {
+        await client.connect()
+        const mongodb = client.db(`${process.env.MONGO_DATABASE}`).collection(`${process.env.MONGO_COLLECTION}`)
+        let query = {email: email}
+        let set = {$set: {relacao: relation}}
+        mongodb.updateOne(query, set)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+//Função que retorna todos os usuários no mongo
+async function returnAllUsers(){
+    try {
+        await client.connect()
+        const mongodb = client.db(`${process.env.MONGO_DATABASE}`).collection(`${process.env.MONGO_COLLECTION}`)
+        let results = []
+        await mongodb.find().forEach(item=>{results.push(item)})
+            
+        return results
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 module.exports = {
     saveUser,
     getUsers,
     updateUser, 
-    deleteUser
+    deleteUser,
+    setRelationshipMongo
 }
