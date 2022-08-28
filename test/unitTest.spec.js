@@ -22,3 +22,22 @@ describe("MongoDB", () => {
     expect(resultado).toBe(1);
   });
 });
+
+const { addToNeo4j, removeToNeo4j } = require("../database/neo4j/neo4j");
+
+describe("Neo4J", () => {
+  test("Espero poder adicionar um usuário no neo4j", async () => {
+    let name = "Matheus";
+    let email = "matheus@123.com";
+    let result = await addToNeo4j(name, email);
+
+    expect(result).toBe("Usuario Adicionado");
+  });
+
+  test("Espero poder remover um usuário no neo4j", async () => {
+    let email = "matheus@123.com";
+    let result = await removeToNeo4j(email);
+
+    expect(result).toBe("Usuario Removido");
+  });
+});
