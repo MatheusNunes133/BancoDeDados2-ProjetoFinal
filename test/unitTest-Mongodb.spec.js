@@ -6,6 +6,7 @@ const {
   updateUser,saveUser
 } = require("../database/mongodb/mongo");
 
+jest.mock("../database/postgres/postgres",()=>{return jest.fn()})
 
 describe("MongoDB", () => {
   test("Espero retornar um array com todos os usuários do mongo", async () => {
