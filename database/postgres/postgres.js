@@ -9,7 +9,7 @@ const cliente = new Client({
     port: process.env.PG_PORT
 })
 
-cliente.connect().then(()=>console.log('cliente conectado')).catch(error=>console.log(error))
+cliente.connect().then().catch(error=>console.log(error))
 
 
 //Funcção responsável por recuperar o svg do municipio
@@ -21,13 +21,11 @@ async function getSVG(req, res){
         cliente.query(query, (error, results)=>{
             if(error){
                 res.status(400).send(error)
-                console.log(error)
-                return
             }else{
-                return res.status(200).json(results.rows)
+                res.status(200).json(results.rows)
             }  
         })
-        
+        return "Sucesso ao resgatar SVG"
     } catch (error) {
         console.log(error)
     }
