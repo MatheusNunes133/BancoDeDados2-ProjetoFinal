@@ -46,7 +46,8 @@ async function createRelationship(req, res) {
     let relation2 = `${relationshipType} -> ${secondEmail}`;
     await mongo.setRelationshipMongo(secondEmail, relation1);
     await mongo.setRelationshipMongo(firstEmail, relation2);
-    return res.status(200).send();
+    /* return res.status(200).send(); */
+    return "relacionamento criado";
   } catch (error) {
     return res.status(400).send();
   }
