@@ -81,9 +81,11 @@ async function updateUser(req, res) {
       };
 
       await mongodb.updateOne(query, update);
-      return res.status(200).send();
+      /* res.status(200).send(); */
+      return "Alterado com sucesso";
     } else {
-      return res.status(400).send();
+      /* return res.status(400).send(); */
+      return "Erro ao alterar usuario";
     }
   } catch (error) {
     console.log(error);
@@ -163,6 +165,7 @@ async function setRelationshipMongo(email, relation) {
     let query = { email: email };
     let set = { $set: { relacao: relation } };
     mongodb.updateOne(query, set);
+    return "Alteração realizado com sucesso";
   } catch (error) {
     console.log(error);
   }
