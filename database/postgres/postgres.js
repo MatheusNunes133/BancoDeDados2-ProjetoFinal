@@ -45,6 +45,7 @@ async function getViewBox(req, res){
                 return res.status(200).json(results.rows)
             }  
         })
+        return "Sucesso ao resgatar ViewBox"
     } catch (error) {
         console.log(error)
     }
